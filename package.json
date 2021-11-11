@@ -4,6 +4,8 @@
   "description": "電化製品に関する情報を登録、取得できるAPIです。\r 登録した家電製品にコメントを追加することもできます。",
   "main": "index.js",
   "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "makeMigrate": "knex migrate:make --knexfile ./knexfile.js",
     "migrate": "knex migrate:latest --knexfile ./knexfile.js",
@@ -19,5 +21,8 @@
     "express": "^4.17.1",
     "knex": "^0.95.14",
     "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
