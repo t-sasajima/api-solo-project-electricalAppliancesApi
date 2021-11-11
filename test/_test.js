@@ -51,4 +51,27 @@ describe("electrical appliances API Server", () => {
       resObj[2].should.include(roomba);
     });
   });
+
+  describe("GET /electricalAppliances/{id}", () => {
+    it("should return a appliance", async () => {
+      knex("appliances").insert(miele).then();
+      knex("appliances").insert(kantaKun).then();
+      knex("appliances").insert(roomba).then();
+      request = request.keepOpen();
+
+      const res1 = await request.get("/electricalAppliances");
+      const getId = JSON.parse(res1.text)[1].id;
+      const res2 = await request.get(`/electricalAppliances/${getId}`);
+
+      JSON.parse(res2.text).length.should.equal(1);
+      JSON.parse(res2.text)[0].should.include(kantaKun);
+
+      request.close();
+    });
+
+    it("should return 404 not found", async () => {
+        const res = await request.get("/electricalAppliances/0");
+        res.should.have.status(404);
+      });
+  });
 });
