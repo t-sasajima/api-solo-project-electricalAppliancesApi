@@ -1,4 +1,3 @@
-# api-solo-project-electricalAppliancesApi
 電化製品に関する情報を登録、取得できるAPIです。
 登録した家電製品にコメントを追加することもできます。
 
