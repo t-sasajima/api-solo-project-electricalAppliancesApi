@@ -12,7 +12,7 @@ const setupServer = () => {
       .select()
       .then((appliances) => {
         res.send(appliances);
-      })
+      });
   });
 
   //特定の製品情報を取得
@@ -20,7 +20,7 @@ const setupServer = () => {
     const { id } = req.params;
 
     knex("appliances")
-      .where({id})
+      .where({ id })
       .select()
       .then((appliances) => {
         if (appliances.length === 0) {
@@ -28,7 +28,7 @@ const setupServer = () => {
         } else {
           res.send(appliances);
         }
-      })
+      });
   });
 
   //製品登録
@@ -40,9 +40,7 @@ const setupServer = () => {
     knex("appliances")
       .insert(reqAppData)
       .then(() => {
-        return knex("appliances")
-          .where(reqAppData)
-          .select()
+        return knex("appliances").where(reqAppData).select();
       })
       .then((appliance) => {
         res.send(appliance[0]);
@@ -58,13 +56,11 @@ const setupServer = () => {
       .where({ id })
       .update(changeData)
       .then(() => {
-        return knex("appliances")
-        .where({id})
-        .select();
-        })
+        return knex("appliances").where({ id }).select();
+      })
       .then((appliance) => {
         res.send(appliance);
-      })
+      });
   });
 
   // 製品の削除
@@ -76,7 +72,7 @@ const setupServer = () => {
       .del()
       .then(() => {
         res.end();
-      })
+      });
   });
 
   return app;
