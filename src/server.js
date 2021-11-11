@@ -49,6 +49,36 @@ const setupServer = () => {
       });
   });
 
+  //製品登録情報の変更
+  app.put("/electricalAppliances/:id", (req, res) => {
+    const { id } = req.params;
+    const changeData = req.body;
+
+    knex("appliances")
+      .where({ id })
+      .update(changeData)
+      .then(() => {
+        return knex("appliances")
+        .where({id})
+        .select();
+        })
+      .then((appliance) => {
+        res.send(appliance);
+      })
+  });
+
+  // 製品の削除
+  app.delete("/electricalAppliances/:id", (req, res) => {
+    const { id } = req.params;
+
+    knex("appliances")
+      .where({ id })
+      .del()
+      .then(() => {
+        res.end();
+      })
+  });
+
   return app;
 };
 
