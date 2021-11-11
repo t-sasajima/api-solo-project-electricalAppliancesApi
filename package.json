@@ -1,0 +1,23 @@
+{
+  "name": "api-solo-project-electricalappliancesapi",
+  "version": "1.0.0",
+  "description": "電化製品に関する情報を登録、取得できるAPIです。\r 登録した家電製品にコメントを追加することもできます。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "makeMigrate": "knex migrate:make --knexfile ./knexfile.js",
+    "migrate": "knex migrate:latest --knexfile ./knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile ./knexfile.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t-sasajima/api-solo-project-electricalAppliancesApi.git"
+  },
+  "author": "t-sasajima",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.95.14",
+    "pg": "^8.7.1"
+  }
+}
