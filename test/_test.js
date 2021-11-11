@@ -38,9 +38,9 @@ describe("electrical appliances API Server", () => {
 
   describe("GET /electricalAppliances", () => {
     it("should return all appliances", async () => {
-      knex("appliances").insert(miele).then();
-      knex("appliances").insert(kantaKun).then();
-      knex("appliances").insert(roomba).then();
+      await knex("appliances").insert(miele);
+      await knex("appliances").insert(kantaKun);
+      await knex("appliances").insert(roomba);
 
       const res = await request.get("/electricalAppliances");
       const resObj = JSON.parse(res.text);
@@ -54,9 +54,9 @@ describe("electrical appliances API Server", () => {
 
   describe("GET /electricalAppliances/{id}", () => {
     it("should return a appliance", async () => {
-      knex("appliances").insert(miele).then();
-      knex("appliances").insert(kantaKun).then();
-      knex("appliances").insert(roomba).then();
+      await knex("appliances").insert(miele);
+      await knex("appliances").insert(kantaKun);
+      await knex("appliances").insert(roomba);
       request = request.keepOpen();
 
       const res1 = await request.get("/electricalAppliances");
@@ -70,8 +70,8 @@ describe("electrical appliances API Server", () => {
     });
 
     it("should return 404 not found", async () => {
-        const res = await request.get("/electricalAppliances/0");
-        res.should.have.status(404);
-      });
+      const res = await request.get("/electricalAppliances/0");
+      res.should.have.status(404);
+    });
   });
 });
